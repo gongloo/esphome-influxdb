@@ -47,6 +47,8 @@ def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     yield cg.register_component(var, config)
 
+    if CORE.is_esp32:
+        cg.add_library("WiFi", None)
     cg.add(var.set_host(config[CONF_HOST]))
     cg.add(var.set_port(config[CONF_PORT]))
     cg.add(var.set_max_packet_size(config[CONF_MAX_PACKET_SIZE]))
